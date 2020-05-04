@@ -6,7 +6,6 @@ resource "azurerm_resource_group" "test" {
 module "network-security-group" {
   source  = "app.terraform.io/larryebaum-demo/network-security-group/azurerm"
   version = "3.0.1"
-  resource_group_name = azurerm_resource_group.test.name
   security_group_name   = "nsg"
   source_address_prefix = ["${module.windowsservers.public_ip_address}"]
   predefined_rules = [
