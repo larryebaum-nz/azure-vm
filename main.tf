@@ -35,16 +35,3 @@ module "network" {
 output "windows_vm_public_name"{
   value = "${module.windowsserver.public_ip_dns_name}"
 }
-
-module "disksnapshot" {
-  source  = "app.terraform.io/larryebaum-demo/disk-snapshot/azurerm"
-  resource_group_name  = "resourcegroup1"
-  ver              = "0.1.0"
-  managed_disk_names   = ["disk1", "disk2"]
-
-  tags = {
-    environment = "dev"
-    costcenter  = "it"
-  }
-}
-  
