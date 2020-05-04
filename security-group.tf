@@ -1,34 +1,9 @@
-resource "azurerm_resource_group" "test" {
-  name     = "${var.windows_dns_prefix}-rc"
-  location = "East US"
-}
+module "disksnapshot" {
+  source               = "Azure/disk-snapshot/azurerm"
+  resource_group_name  = "resourcegroup1"
+  version              = "1.0"
+  managed_disk_names   = ["disk1", "disk2"]
 
-module "network-security-group" {
-  source  = "app.terraform.io/larryebaum-demo/network-security-group/azurerm"
-  version = "3.0.1"
-  security_group_name   = "nsg"
-  source_address_prefix = ["${module.windowsservers.public_ip_address}"]
-  predefined_rules = [
-    {
-      name     = "SSH"
-      priority = "500"
-    },
-    {
-      name              = "LDAP"
-      source_port_range = "1024-1026"
-    }
-  ]
-  custom_rules = [
-    {
-      name                   = "myhttp"
-      priority               = "200"
-      direction              = "Inbound"
-      access                 = "Allow"
-      protocol               = "tcp"
-      destination_port_range = "8080"
-      description            = "description-myhttp"
-    }
-  ]
   tags = {
     environment = "dev"
     costcenter  = "it"
