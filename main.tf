@@ -39,7 +39,7 @@ output "windows_vm_public_name"{
 module "disksnapshot" {
   source               = "Azure/disk-snapshot/azurerm"
   resource_group_name  = "resourcegroup1"
-  version              = "1.0"
+  version              = "0.1.0"
   managed_disk_names   = ["disk1", "disk2"]
 
   tags = {
