@@ -1,5 +1,6 @@
 module "diskencrypt" {
-  source               = "Azure/diskencrypt/azurerm"
+  source  = "app.terraform.io/larryebaum-demo/diskencrypt/azurerm"
+  version = "2.0.0"
   resource_group_name = "${var.windows_dns_prefix}-rc"
   location            = "${var.location}"
   vm_name              = "pwc-ptfe"
