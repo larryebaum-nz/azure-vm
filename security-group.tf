@@ -1,3 +1,8 @@
+resource "azurerm_resource_group" "test" {
+  name     = "${var.windows_dns_prefix}-rc"
+  location = "East US"
+}
+
 module "network-security-group" {
   source  = "app.terraform.io/larryebaum-demo/network-security-group/azurerm"
   version = "3.0.1"
