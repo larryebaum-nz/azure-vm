@@ -26,7 +26,6 @@ module "windowsserver" {
   vm_os_simple        = "WindowsServer"
   public_ip_dns       = ["${var.windows_dns_prefix}"]
   vnet_subnet_id      = "${module.network.vnet_subnets[0]}"
-  vm_size             = "Standard_D1_v2"
   tags = {
     environment = "dev"
     prefix  = "${var.windows_dns_prefix}"
