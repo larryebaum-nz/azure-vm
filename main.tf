@@ -29,7 +29,7 @@ module "windowsserver" {
   vm_size             = "Standard_A4_v2"
   tags = {
     environment = "dev"
-    prefix  = ${var.windows_dns_prefix}
+    prefix  = "${var.windows_dns_prefix}"
   }
 }
 
@@ -55,7 +55,7 @@ module "database" {
   sql_password = "P@ssw0rd12345!"  
   tags = {
     environment = "dev"
-    prefix  = ${var.windows_dns_prefix}
+    prefix  = "${var.windows_dns_prefix}"
   }  
 }
 
