@@ -52,11 +52,11 @@ module "database" {
   location = "eastus"
   db_name = "mydatabase"
   sql_admin_username  = "mradministrator"
-  sql_password        = "P@ssw0rd12345!"  
-  tags             = {
-                        environment = "dev"
-                        costcenter  = "it"
-                      }  
+  sql_password = "P@ssw0rd12345!"  
+  tags = {
+    environment = "dev"
+    prefix  = var.windows_dns_prefix
+  }  
 }
 
   
