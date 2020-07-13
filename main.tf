@@ -16,9 +16,16 @@ variable "admin_password" {
   default = "pTFE1234!"
 }
 
+resource "azurerm_resource_group" "example" {
+name = ${var.windows_dns_prefix}-rg"
+location = "East US"
+}
+
+
+
 module "windowsserver" {
   source              = "Azure/compute/azurerm"
-  resource_group_name = "${var.windows_dns_prefix}-rc"
+  resource_group_name = "${var.windows_dns_prefix}-rg"
   vm_hostname         = "pwc-ptfe"
   admin_password      = "${var.admin_password}"
   vm_os_simple        = "WindowsServer"
@@ -28,7 +35,7 @@ module "windowsserver" {
 
 module "network" {
   source              = "Azure/network/azurerm"
-  resource_group_name = "${var.windows_dns_prefix}-rc"
+  resource_group_name = "${var.windows_dns_prefix}-rg"
 }
 
 output "windows_vm_public_name"{
