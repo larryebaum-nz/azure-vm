@@ -28,7 +28,6 @@ module "windowsserver" {
 
 module "network" {
   source              = "Azure/network/azurerm"
-  location            = "${var.location}"
   resource_group_name = "${var.windows_dns_prefix}-rc"
 }
 
