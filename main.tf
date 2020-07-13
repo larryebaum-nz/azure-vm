@@ -18,7 +18,6 @@ variable "admin_password" {
 
 module "windowsserver" {
   source              = "Azure/compute/azurerm"
-  location            = "${var.location}"
   resource_group_name = "${var.windows_dns_prefix}-rc"
   vm_hostname         = "pwc-ptfe"
   admin_password      = "${var.admin_password}"
@@ -31,7 +30,6 @@ module "network" {
   source              = "Azure/network/azurerm"
   location            = "${var.location}"
   resource_group_name = "${var.windows_dns_prefix}-rc"
-  allow_ssh_traffic   = true
 }
 
 output "windows_vm_public_name"{
