@@ -17,7 +17,7 @@ variable "admin_password" {
 }
 
 resource "azurerm_resource_group" "example" {
-name = ${var.windows_dns_prefix}-rg"
+name = "${var.windows_dns_prefix}-rg"
 location = "East US"
 }
 
