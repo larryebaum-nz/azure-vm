@@ -17,7 +17,7 @@ variable "admin_password" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name = "larry-windows-rg"
+  name = "larryebaum-win-rg"
   location = "East US"
 }
 
