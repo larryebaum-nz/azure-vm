@@ -2,6 +2,10 @@ provider "azurerm" {
     features {}
 }
 
+terraform {
+  required_version = ">= 0.11.1"
+}
+
 variable "location" {
   description = "Azure location in which to create resources"
   default = "East US"
@@ -16,16 +20,11 @@ variable "admin_password" {
   default = "pTFE1234!"
 }
 
-resource "azurerm_resource_group" "example" {
-  name = "larryebaum-win-rg"
-  location = "East US"
-}
-
-
-
 module "windowsserver" {
   source              = "Azure/compute/azurerm"
-  resource_group_name = "${var.windows_dns_prefix}-rg"
+  version             = "1.1.5"
+  location            = "${var.location}"
+  resource_group_name = "${var.windows_dns_prefix}-rc"
   vm_hostname         = "pwc-ptfe"
   admin_password      = "${var.admin_password}"
   vm_os_simple        = "WindowsServer"
@@ -35,13 +34,12 @@ module "windowsserver" {
 
 module "network" {
   source              = "Azure/network/azurerm"
-  resource_group_name = "${var.windows_dns_prefix}-rg"
+  version             = "1.1.1"
+  location            = "${var.location}"
+  resource_group_name = "${var.windows_dns_prefix}-rc"
+  allow_ssh_traffic   = true
 }
 
 output "windows_vm_public_name"{
   value = "${module.windowsserver.public_ip_dns_name}"
 }
-
-
-  
-  
